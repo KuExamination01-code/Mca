@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,15 +53,14 @@
         .border-dashed-light {
             border: 1px dashed #e0e0e0;
         }
-    .bt{
-        color:brown 
-        border-radius:10px
-    } 
+        .bt {
+            color: brown;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <!-- Header Section -->
     <!-- Header Section -->
 <header class="bg-white text-black p-4 border-b border-black">
   <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
@@ -77,23 +77,33 @@
     <!-- Right Side Image + Text -->
     <div class="flex flex-col sm:flex-row items-center sm:items-end sm:space-x-3 text-center sm:text-right">
       <h2 class="text-base sm:text-xl font-medium">Marching towards Academic Excellence</h2>
-    <!--<img src="rightimg1.jpg" alt="Right Image" class="w-20 h-12 sm:w-28 sm:h-16 object-contain mt-2 sm:mt-0">-->
     </div>
 
   </div>
 </header>
 
     <!-- Navigation Bar -->
-    <nav class="bg-white text-black p-2 text-sm border-b border-black">
-        <div class="container mx-auto flex space-x-4">
-           <button class="bt"><a href="https://kuexams.org/" class="hover:bg-gray-200 rounded-md transition-colors duration-200">Home</a></button>
-           <button class="bt"> <a href="http://kakatiya.ac.in/" class="hover:bg-gray-200 rounded-md transition-colors duration-200">KU Main Site</a></button>
-            <button class="bt"><a href="https://kuexams.org/contactus" class="hover:bg-gray-200 rounded-md transition-colors duration-200">Contact Us</a></button>
-            <button class="bt"><a href="https://kuexams.org/usefull_links" class="hover:bg-gray-200 rounded-md transition-colors duration-200">Other Useful Links</a></button>
-            <button class="bt"><a href="https://kuexams.org/terms_and_conditions" class="hover:bg-gray-200 rounded-md transition-colors duration-200">Terms & Conditions</a></button>
-            <button class="bt"><a href="https://kuexams.org/privacy_policy" class="hover:bg-gray-200 rounded-md transition-colors duration-200">Privacy Policy</a></button>
-           <button class="bt"> <a href="https://kuexams.org/refund_cancellation_policy" class="hover:bg-gray-200 rounded-md transition-colors duration-200">Refund Information Policy</a></button>
+    <nav class="bg-white text-black border-b border-black">
+      <div class="container mx-auto flex justify-between items-center p-2">
+        
+        <!-- Hamburger Button (Mobile) -->
+        <button id="menu-toggle" class="sm:hidden flex flex-col space-y-1 focus:outline-none">
+          <span class="block w-6 h-0.5 bg-black"></span>
+          <span class="block w-6 h-0.5 bg-black"></span>
+          <span class="block w-6 h-0.5 bg-black"></span>
+        </button>
+
+        <!-- Nav Links -->
+        <div id="menu" class="hidden sm:flex flex-col sm:flex-row sm:space-x-4 w-full sm:w-auto mt-2 sm:mt-0">
+          <button class="bt"><a href="https://kuexams.org/" class="hover:bg-gray-200 rounded-md transition-colors duration-200 block px-3 py-2">Home</a></button>
+          <button class="bt"><a href="http://kakatiya.ac.in/" class="hover:bg-gray-200 rounded-md transition-colors duration-200 block px-3 py-2">KU Main Site</a></button>
+          <button class="bt"><a href="https://kuexams.org/contactus" class="hover:bg-gray-200 rounded-md transition-colors duration-200 block px-3 py-2">Contact Us</a></button>
+          <button class="bt"><a href="https://kuexams.org/usefull_links" class="hover:bg-gray-200 rounded-md transition-colors duration-200 block px-3 py-2">Other Useful Links</a></button>
+          <button class="bt"><a href="https://kuexams.org/terms_and_conditions" class="hover:bg-gray-200 rounded-md transition-colors duration-200 block px-3 py-2">Terms & Conditions</a></button>
+          <button class="bt"><a href="https://kuexams.org/privacy_policy" class="hover:bg-gray-200 rounded-md transition-colors duration-200 block px-3 py-2">Privacy Policy</a></button>
+          <button class="bt"><a href="https://kuexams.org/refund_cancellation_policy" class="hover:bg-gray-200 rounded-md transition-colors duration-200 block px-3 py-2">Refund Information Policy</a></button>
         </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
@@ -195,6 +205,15 @@
     </footer>
 
     <script>
+      // Hamburger toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('menu');
+      menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    </script>
+
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const students = {
                 '24000I0001': { name: 'Marripudi.Dastagiri' },
@@ -277,84 +296,4 @@
 
             const generateCaptcha = () => {
                 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-                let result = '';
-                for (let i = 0; i < 6; i++) {
-                    result += chars.charAt(Math.floor(Math.random() * chars.length));
-                }
-                currentCaptcha = result;
-                captchaSpan.textContent = currentCaptcha;
-            };
-
-            const showModal = (message) => {
-                modalText.textContent = message;
-                modalMessage.classList.remove('hidden');
-            };
-
-            const hideModal = () => {
-                modalMessage.classList.add('hidden');
-            };
-
-            const showResults = (student) => {
-                const now = new Date();
-                const today = now.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-                document.getElementById('current-date').textContent = today;
-                document.getElementById('revaluation-date').textContent = '20-09-2025';
-                document.getElementById('candidate-name').textContent = student.name;
-                document.getElementById('father-name').textContent = '';
-                document.getElementById('htno').textContent = hallTicketInput.value;
-                document.getElementById('year-sem').textContent = '22';
-
-                const subjectsTableBody = document.getElementById('subjects-table-body');
-                subjectsTableBody.innerHTML = ''; 
-
-                const subjectData = [
-                    { code: 'AL04', name: 'Artificial Intelligence', grade: 'F' },
-                    { code: 'ML04', name: 'Machine Learning', grade: 'F' },
-                    { code: 'EC04', name: 'E-commerce', grade: 'F' },
-                    { code: 'PR04', name: 'Project', grade: 'O' }
-                ];
-
-                subjectData.forEach(sub => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="border px-4 py-2">${sub.code}</td>
-                        <td class="border px-4 py-2">${sub.name}</td>
-                        <td class="border px-4 py-2">${sub.grade}</td>
-                    `;
-                    subjectsTableBody.appendChild(row);
-                });
-
-                formContainer.classList.add('hidden');
-                resultsContainer.classList.remove('hidden');
-            };
-
-            submitBtn.addEventListener('click', () => {
-                messageBox.textContent = '';
-                const hallTicket = hallTicketInput.value.toUpperCase();
-                const securityCode = securityCodeInput.value;
-
-                if (securityCode !== currentCaptcha) {
-                    showModal('Incorrect security code. Please try again.');
-                    generateCaptcha();
-                    securityCodeInput.value = '';
-                    return;
-                }
-
-                const student = students[hallTicket];
-                if (!student) {
-                    showModal('Hall Ticket Number not found.');
-                    generateCaptcha();
-                    securityCodeInput.value = '';
-                    return;
-                }
-
-                showResults(student);
-            });
-
-            modalCloseBtn.addEventListener('click', hideModal);
-
-            generateCaptcha();
-        });
-    </script>
-</body>
-</html>
+                let result
